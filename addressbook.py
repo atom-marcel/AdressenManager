@@ -2,7 +2,7 @@
 # @Date:   2022-02-28T15:48:07+01:00
 # @Email:  marcelmaluta@gmail.com
 # @Last modified by:   Marcel Maluta
-# @Last modified time: 2022-03-12T17:11:28+01:00
+# @Last modified time: 2022-03-27T19:13:58+02:00
 
 ## @package adressbook
 #  Erstellt und verwaltet ein Adressbuch, in dem es mehrere Einträge gibt
@@ -43,7 +43,6 @@ def btnBuilder(parent, sizer, label, func):
 ## Erstellt ein Panelobjekt
 class AddPanel(wx.Panel):
     ## Der Konstruktor
-    #  @param self Der Objektzeiger
     #  @param parent Das vorherige Objekt
     def __init__(self, parent):
         super().__init__(parent)
@@ -74,7 +73,6 @@ class AddPanel(wx.Panel):
         self.SetSizer(main_sizer)
 
     ## Methode die von dem Knopfdruck "Hinzufügen" aufgerufen wird
-    #  @param self Der Objektzeiger
     #  @param event Das Eventobjekt
     def onAccept(self, event):
         firstname = self.textctrl_firstname.GetValue()
@@ -105,7 +103,6 @@ class AddPanel(wx.Panel):
             self.parent.main_panel.update_list()
 
     ## Methode die von dem Knopfdruck "Abbrechen" aufgerufen wird
-    #  @param self Der Objektzeiger
     #  @param event Das Eventobjekt
     def onDiscard(self, event):
         self.parent.Destroy()
@@ -113,7 +110,6 @@ class AddPanel(wx.Panel):
 ## Erstellt ein Fensterobjekt
 class AddFrame(wx.Frame):
     ## Der Konstruktor
-    #  @param self Der Objektzeiger
     #  @param parent Das vorherige Objekt
     def __init__(self, parent):
         super().__init__(parent=parent, title="Eintrag hinzufügen", size=wx.Size(400, 350))
@@ -125,7 +121,6 @@ class AddFrame(wx.Frame):
 ## Erstellt eine Panelobjekt
 class EditPanel(wx.Panel):
     ## Der Konstruktor
-    #  @param self Der Objektzeiger
     #  @param parent Das vorherige Objekt
     #  @param entry Der Eintrag der ausgewählt wurde
     def __init__(self, parent, entry):
@@ -154,7 +149,6 @@ class EditPanel(wx.Panel):
         self.SetSizer(main_sizer)
 
     ## Die Methode die von dem Knopfdruck "Aktualisieren" aufgerufen wird
-    #  @param self Der Objektzeiger
     #  @param event Das Eventobjekt
     def onAccept(self, event):
         firstname = self.textctrl_firstname.GetValue()
@@ -182,7 +176,6 @@ class EditPanel(wx.Panel):
             self.parent.Destroy()
 
     ## Die Methode die von dem Knopfdruck "Abbrechen" aufgerufen wird
-    #  @param self Der Objektzeiger
     #  @param event Das Eventobjekt
     def onDiscard(self, event):
         self.parent.Destroy()
@@ -190,8 +183,7 @@ class EditPanel(wx.Panel):
 ## Erstellt eine Fensterobjekt
 class EditFrame(wx.Frame):
     ## Der Konstruktor
-    #  @param self Der Objektzeiger
-    #  @param entry Der Adressbucheintrag der ausgewählt wurde
+    #  @param entry dict Der Adressbucheintrag der ausgewählt wurde
     #  @param parent Das vorherige Element
     def __init__(self, entry, parent):
         super().__init__(parent=parent, title="Eintrag hinzufügen", size=wx.Size(400, 350))
@@ -204,7 +196,6 @@ class EditFrame(wx.Frame):
 class AdressBookPanel(wx.Panel):
 
     ## Der Konstruktor
-    #  @param self Der Objektzeiger
     #  @param parent Das vorherige Element
     def __init__(self, parent):
         super().__init__(parent)
@@ -236,13 +227,11 @@ class AdressBookPanel(wx.Panel):
         self.SetSizer(main_sizer)
 
     ## Die Methode die von dem Knopfdruck "Hinzufügen" aufgerufen wird
-    #  @param self Der Objektzeiger
     #  @param event Das Eventobjekt
     def onAdd(self, event):
         frame = AddFrame(self)
 
     ## Die Methode die von dem Knopfdruck "Bearbeiten" aufgerufen wird
-    #  @param self Der Objektzeiger
     #  @param event Das Eventobjekt
     def onEdit(self, event):
         focus = self.list_ctrl.GetFocusedItem()
@@ -250,7 +239,6 @@ class AdressBookPanel(wx.Panel):
         myframe = EditFrame(entry, self)
 
     ## Die Methode die von dem Knopfdruck "Löschen" aufgerufen wird
-    #  @param self Der Objektzeiger
     #  @param event Das Eventobjekt
     def onDelete(self, event):
         dlg = wx.MessageDialog(None, "Möchten Sie den Eintrag löschen?", "Eintrag löschen?", wx.YES_NO | wx.ICON_QUESTION)
@@ -263,7 +251,6 @@ class AdressBookPanel(wx.Panel):
             self.update_list()
 
     ## Die Methode die von dem Knopfdruck "Aktualisieren" aufgerufen wird
-    #  @param self Der Objektzeiger
     #  @param event Das Eventobjekt
     def onUpdate(self, event):
         self.update_list()
